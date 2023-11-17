@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-
+import time
 app = FastAPI()
 
 def fib(n):
@@ -20,4 +20,8 @@ async def root():
 # endpoint for calculating the fibonacci number. write the as a POST method
 @app.post("/api/v1/fibonacci")
 async def fibonacci(n: int):
-        return {"message": fib(n)}
+        t1 = time.time()
+        f = fib(n)
+        t2 = time.time()
+        print("Time taken:", t2 - t1, "seconds")
+        return {"message": f}
